@@ -1,21 +1,23 @@
-import { FC } from 'react';
+// src/components/dashboard/metrics-chart.tsx
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { RiskChart, ChartDataPoint } from './charts/risk-chart';
+import { RiskChart } from './charts/risk-chart';
 
 interface MetricsChartProps {
   data: number[];
 }
 
-const MetricsChart: FC<MetricsChartProps> = ({ data }) => {
-  const chartData: ChartDataPoint[] = data.map((value, index) => ({
+export const MetricsChart: React.FC<MetricsChartProps> = ({ data }) => {
+  // Transform data into the required format
+  const chartData = data.map((value, index) => ({
     time: `${index}h`,
-    value,
+    value
   }));
 
   return (
-    <Card className="col-span-full lg:col-span-2">
+    <Card>
       <CardHeader>
-        <CardTitle>Risk Analysis</CardTitle>
+        <CardTitle>Risco de Abandono</CardTitle>
       </CardHeader>
       <CardContent>
         <RiskChart data={chartData} />
@@ -23,5 +25,3 @@ const MetricsChart: FC<MetricsChartProps> = ({ data }) => {
     </Card>
   );
 };
-
-export { MetricsChart };
